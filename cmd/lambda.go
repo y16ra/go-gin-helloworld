@@ -10,6 +10,7 @@ import (
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
+	"github.com/y16ra/go-gin-helloworld/routes"
 )
 
 var Lambda = NewLambda()
@@ -29,11 +30,7 @@ func NewLambda() *cobra.Command {
 					"message": "Hello",
 				})
 			})
-			r.GET("/ping", func(c *gin.Context) {
-				c.JSON(http.StatusOK, gin.H{
-					"message": "pong",
-				})
-			})
+			routes.SetupGreeting(r)
 
 			ginLambda = ginadapter.New(r)
 			lambda.Start(Handler)
