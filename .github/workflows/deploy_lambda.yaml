@@ -24,11 +24,8 @@ jobs:
       - name: Test code
         run: go test -v .
 
-      - name: go build
-        run: GOARCH=amd64 GOOS=linux go build -o main
-
-      - name: create zip
-        run: zip main.zip main
+      - name: build app
+        run: make
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
