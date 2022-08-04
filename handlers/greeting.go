@@ -17,9 +17,13 @@ func Greeting() gin.HandlerFunc {
 func GreetingTo() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		name := c.Param("name")
-		msg := "Hello, " + name + "!"
-		c.JSON(http.StatusOK, gin.H{
-			"message": msg,
-		})
+		msg := &GreetingMessage{
+			Message: "Hello, " + name + "!",
+		}
+		c.JSON(http.StatusOK, msg)
 	}
+}
+
+type GreetingMessage struct {
+	Message string `json:"message"`
 }
