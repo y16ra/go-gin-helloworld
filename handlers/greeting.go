@@ -24,6 +24,18 @@ func GreetingTo() gin.HandlerFunc {
 	}
 }
 
+func PostGreeting() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		req := &struct {
+			Name string
+		}{}
+		c.ShouldBindJSON(req)
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Hello, " + req.Name,
+		})
+	}
+}
+
 type GreetingMessage struct {
 	Message string `json:"message"`
 }

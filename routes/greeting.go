@@ -8,4 +8,5 @@ import (
 func SetupGreeting(r *gin.Engine) {
 	r.GET("/greeting", handlers.Greeting())
 	r.GET("/greeting/:name", handlers.GreetingTo())
+	r.POST("/greeting", handlers.PostGreeting())
 }
